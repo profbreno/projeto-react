@@ -1,8 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+function CardItem(){
+  return <div>Item 1</div>;
+}
+
+function ListarItens(){
+  return <div>
+      <CardItem />
+      <CardItem />
+    </div>;
+}
+
+function App(){
+  return <ListarItens />;
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,8 +23,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

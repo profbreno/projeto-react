@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ListarItens, ItemView } from "./pages/Itens";
-import Form from "./pages/Form";
+import Formulario from "./pages/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //console.log(JSON.stringify(itens));
 
@@ -97,7 +98,7 @@ function App() {
       <Route path="/" exact={true} component={ListarItens} />
       <Route path="/view/:id" component={ItemView} />
       <Route path="/p/:pag" component={ListarItens} />
-      <Route path="/cadastro" component={Form} />
+      <Route path="/cadastro" component={Formulario} />
     </Switch>
   );
 }

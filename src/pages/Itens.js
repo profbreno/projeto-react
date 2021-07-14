@@ -18,6 +18,7 @@ class ListarItens extends React.Component {
   //Definir o estado inicial
   constructor(props) {
     super(props);
+    this.pag = this.props.match.params.pag;
 
     this.state = {
       itens: [],
@@ -26,8 +27,11 @@ class ListarItens extends React.Component {
 
   async componentDidMount() {
     console.log("Componente ListaItens contruído");
+    const request = await fetch(
+      "https://pokeapi.co/api/v2/pokemon?limit=100" +
+        (this.pag ? "&offset=" + parseInt(this.pag - 1) * 100 : "")
+    );
 
-    const request = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
     const json = await request.json();
     let i = 0;
     for (const item of json.results) {
@@ -53,6 +57,30 @@ class ListarItens extends React.Component {
           {this.state.itens.map((item, index) => (
             <CardItem item={item} key={index} />
           ))}
+        </div>
+        <div className="pagination">
+          {this.state.itens.length >= 100 ? (
+            <Link
+              to={"/p/" + (parseInt(this.pag ? this.pag : 1) + 1)}
+              className="next"
+            >
+              Próxima
+            </Link>
+          ) : null}
+          {this.state.itens.length >= 100 || this.pag ? (
+            <Link
+              to={
+                "/p/" +
+                (parseInt(
+                  this.pag ? (parseInt(this.pag) === 1 ? 2 : this.pag) : 2
+                ) -
+                  1)
+              }
+              className="prev"
+            >
+              Anterior
+            </Link>
+          ) : null}
         </div>
       </div>
     );

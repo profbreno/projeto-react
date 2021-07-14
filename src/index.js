@@ -96,6 +96,7 @@ function App() {
     <Switch>
       <Route path="/" exact={true} component={ListarItens} />
       <Route path="/view/:id" component={ItemView} />
+      <Route path="/p/:pag" component={ListarItens} />
       <Route path="/cadastro" component={Form} />
     </Switch>
   );

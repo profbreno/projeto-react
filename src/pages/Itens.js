@@ -28,8 +28,8 @@ class ListarItens extends React.Component {
   async componentDidMount() {
     console.log("Componente ListaItens contruído");
     const request = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=100" +
-        (this.pag ? "&offset=" + parseInt(this.pag - 1) * 100 : "")
+      "https://pokeapi.co/api/v2/pokemon?limit=20" +
+        (this.pag ? "&offset=" + parseInt(this.pag - 1) * 20 : "")
     );
 
     const json = await request.json();
@@ -51,7 +51,7 @@ class ListarItens extends React.Component {
     // Renderiza utilizando a informação que está no estado
     return (
       <div className="App">
-        <Header title="Minha Pokedex" />
+        <Header title="Minha Pokedex 10" />
         <Link to="/cadastro">Acessar cadastro</Link>
         <div className="lista_itens">
           {this.state.itens.map((item, index) => (
@@ -59,7 +59,7 @@ class ListarItens extends React.Component {
           ))}
         </div>
         <div className="pagination">
-          {this.state.itens.length >= 100 ? (
+          {this.state.itens.length >= 20 ? (
             <Link
               to={"/p/" + (parseInt(this.pag ? this.pag : 1) + 1)}
               className="next"
@@ -67,7 +67,7 @@ class ListarItens extends React.Component {
               Próxima
             </Link>
           ) : null}
-          {this.state.itens.length >= 100 || this.pag ? (
+          {this.state.itens.length >= 20 || this.pag ? (
             <Link
               to={
                 "/p/" +
